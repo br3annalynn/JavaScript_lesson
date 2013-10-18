@@ -15,9 +15,9 @@
             .whiteBack{
                 background-color: rgba(100, 100, 100, .5);
                 color: white;
-                width: 500px;
+           /*     width: 500px;*/
                 margin: 10px;
-                padding: 10px;
+                padding: 10px 40px 10px 40px;
             }
             #bookList{
                 float: left;
@@ -28,6 +28,19 @@
             #bigImage{
                 height: 300px;
                 width: 200px;
+            }
+            #titleAndPic{
+                float: left;
+            }
+            #finishButtonBox{
+                float: left;
+            }
+            #currentBook{
+                height: 414px;
+            }
+            #finishButtonBox{
+                padding-top: 358px;
+                padding-left: 10px;
             }
 
         </style>
@@ -40,9 +53,16 @@
         
         <div id="biggerBox">
             <div id="currentBook" class="whiteBack">
-                <h2>Current book:</h2>
+                <div id="titleAndPic">
+                    <h2>Current book:</h2>
+                </div>
 
+                <div id="finishButtonBox">
+                    <button id="finished">Click me <br>to reveal 
+                        <br>your next book</button> 
+                </div>  
             </div>
+
             <div id="ourForm" class="whiteBack">
                 <h2>Add a new book to your library:</h2>
 

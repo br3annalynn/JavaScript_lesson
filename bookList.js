@@ -71,15 +71,23 @@ function displayBooks(arrayOfBooks){
 }
 
 function displayCurrentBook(){
-    var currentBook = document.getElementById('currentBook');
+    var currentBook = document.getElementById('titleAndPic');
     var currentBookImage = document.createElement('img');
     currentBookImage.setAttribute("src", megsBooks.currentBook().photoLink);
     currentBookImage.setAttribute("id", "bigImage");
     var currentBookHeader = document.createElement('h3');
+    currentBookHeader.setAttribute("id", 'bigTitle');
     var currentBookTitle = document.createTextNode(megsBooks.currentBook().bookTitle);
     currentBookHeader.appendChild(currentBookTitle);
     currentBook.appendChild(currentBookHeader);
     currentBook.appendChild(currentBookImage);
+}
+
+function changeCurrentBook(){
+    var currentBookImage = document.getElementById('bigImage');
+    currentBookImage.setAttribute("src", megsBooks.currentBook().photoLink);
+    var currentBookTitle = document.getElementById('bigTitle');
+    currentBookTitle.innerHTML = megsBooks.currentBook().bookTitle;
 }
 
 var submitButton = document.getElementById("submit");
@@ -95,18 +103,24 @@ function onButtonClick(){
     
 }
 
+var finishButton = document.getElementById('finished');
+function finishButtonClick(){
+    megsBooks.finishCurrentBook();
+    changeCurrentBook();
+}
+
 //starts here
 var megsBooks = new BookDatabase('Meghan');
 
 megsBooks.addBook("The Magus", "coming of age", "John Fowles", "http://d202m5krfqbpi5.cloudfront.net/books/1344264891l/16286.jpg");
-megsBooks.addBook("Harry Potter and the Sorcerer's Stone", "fantasy", "Jk Rowling", "http://upload.wikimedia.org/wikipedia/en/b/bf/Harry_Potter_and_the_Sorcerer's_Stone.jpg", '6/10/2013');
+megsBooks.addBook("Harry Potter and the Sorcerer's Stone", "fantasy", "Jk Rowling", "http://upload.wikimedia.org/wikipedia/en/b/bf/Harry_Potter_and_the_Sorcerer's_Stone.jpg", true, '6/10/2013');
 megsBooks.addBook("All the Truth That's in Me", "Young Adult", "Julie Berry", "http://d202m5krfqbpi5.cloudfront.net/books/1364245088l/17297487.jpg");
 megsBooks.addBook("Don't let's go to the dogs tonight", "memoir", "Alexandra Fuller", "http://msjeannieology.files.wordpress.com/2012/08/dont-lets-go-to-the-dogs-tonight.jpg?w=560", true, '10/30/2000');
 megsBooks.addBook("Out of Africa", "memoir", "Isak Dinesen", "http://d202m5krfqbpi5.cloudfront.net/books/1178296503l/781787.jpg", false);
 
 displayCurrentBook();
 submitButton.addEventListener('click', onButtonClick, false);
-
+finishButton.addEventListener('click', finishButtonClick, false);
 
 
 
