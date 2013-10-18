@@ -12,14 +12,44 @@
                 background-color: rgba(100, 100, 100, .5);
                 color: white;
                 width: 500px;
+                margin: 10px;
+                float: left;
+            }
+    
+            ul{
+                list-style-type: none;
             }
         </style>
     </head>
 
     <body>
-        <div>
-            <h1>My Book List</h1>
-            <script src="bookList.js"></script>
+        <div id="bookList">
+            <h1>My Book List</h1> 
         </div>
+
+        <div id="ourForm">
+            <h2>Add a new book to your library:</h2>
+
+                <label for="title">Title:</label>
+                <input type="text" id="title" /><br>
+
+                <label for="genre">Genre:</label>
+                <input type="text" id="genre" /><br>
+
+                <label for="author">Author:</label>
+                <input type="text" id="author" /><br>
+
+                <label for="photoLink">Image URL:</label>
+                <input type="text" id="photoLink" /><br>
+
+                <label for="isRead">Have you read this?</label>
+                <input type="radio" id="isRead">Yes<br>
+
+                <label for="readDate">Date Read: (mm/dd/yyyy)</label>
+                <input type="text" id="readDate" /><br>
+
+                <button id="submit">submit</button> 
+
+        <script src="bookList.js"></script>
     </body>
 </html>
