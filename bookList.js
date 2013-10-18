@@ -20,8 +20,10 @@ var BookDatabase = function(username){
         var book = new Book(bookTitle, genre, author, photoLink, isRead, readDate);
         if (isRead === true){
             this.booksRead.push(book);
+            displayBooks([book]);
         } else {
             this.booksNotRead.push(book);
+            displayBooks([book]);
         }
     };
     this.numBooksNotRead = this.booksNotRead.length;
@@ -52,31 +54,45 @@ var BookDatabase = function(username){
 };
 
 
-var displayBooks = function(){
+function displayBooks(arrayOfBooks){
     var pageNode = document.getElementsByTagName('div')[0];
     var newUl = document.createElement('ul');
     pageNode.appendChild(newUl);
-    for (i = 0; i < megsBooks.bookShelf().length; i++){
+    for (i = 0; i < arrayOfBooks.length; i++){
         var newLi = document.createElement('li');
-        var bookText = document.createTextNode(megsBooks.bookShelf()[i].bookTitle + ", " + megsBooks.bookShelf()[i].author);
+        var bookText = document.createTextNode(arrayOfBooks[i].bookTitle + ", " + arrayOfBooks[i].author);
         var newImg = document.createElement('img');
-        newImg.setAttribute("src", megsBooks.bookShelf()[i].photoLink);
+        newImg.setAttribute("src", arrayOfBooks[i].photoLink);
         
         newLi.appendChild(newImg);
         newLi.appendChild(bookText);
         newUl.appendChild(newLi);
     }
-};
+}
+
+function displayCurrentBook(){
+    var currentBook = document.getElementById('currentBook');
+    var currentBookImage = document.createElement('img');
+    currentBookImage.setAttribute("src", megsBooks.currentBook().photoLink);
+    currentBookImage.setAttribute("id", "bigImage");
+    var currentBookHeader = document.createElement('h3');
+    var currentBookTitle = document.createTextNode(megsBooks.currentBook().bookTitle);
+    currentBookHeader.appendChild(currentBookTitle);
+    currentBook.appendChild(currentBookHeader);
+    currentBook.appendChild(currentBookImage);
+}
 
 var submitButton = document.getElementById("submit");
 function onButtonClick(){
     var bookTitle = document.getElementById('title').value;
     var genre = document.getElementById('genre').value;
-    var author = document.getElementById('photoLink').value;
+    var author = document.getElementById('author').value;
+    var photoLink = document.getElementById('photoLink').value;
     var isRead = document.getElementById('isRead').checked;
     var readDate = document.getElementById('readDate').value;
     
-    megsBooks.addBook(bookTitle, genre, author, isRead, readDate);
+    megsBooks.addBook(bookTitle, genre, author, photoLink, isRead, readDate);
+    
 }
 
 //starts here
@@ -88,9 +104,9 @@ megsBooks.addBook("All the Truth That's in Me", "Young Adult", "Julie Berry", "h
 megsBooks.addBook("Don't let's go to the dogs tonight", "memoir", "Alexandra Fuller", "http://msjeannieology.files.wordpress.com/2012/08/dont-lets-go-to-the-dogs-tonight.jpg?w=560", true, '10/30/2000');
 megsBooks.addBook("Out of Africa", "memoir", "Isak Dinesen", "http://d202m5krfqbpi5.cloudfront.net/books/1178296503l/781787.jpg", false);
 
-
+displayCurrentBook();
 submitButton.addEventListener('click', onButtonClick, false);
-displayBooks();
+
 
 
 

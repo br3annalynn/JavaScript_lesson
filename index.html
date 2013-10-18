@@ -8,27 +8,43 @@
             body{
                 background-image: url("http://ebookfriendly.com/wp-content/uploads/2012/11/Book-iPad-wallpaper-Library.jpg");
             }
-            div{
-                background-color: rgba(100, 100, 100, .5);
-                color: white;
-                width: 500px;
-                margin: 10px;
-                float: left;
-            }
     
             ul{
                 list-style-type: none;
             }
+            .whiteBack{
+                background-color: rgba(100, 100, 100, .5);
+                color: white;
+                width: 500px;
+                margin: 10px;
+                padding: 10px;
+            }
+            #bookList{
+                float: left;
+            }
+            #biggerBox{
+                float: left;
+            }
+            #bigImage{
+                height: 300px;
+                width: 200px;
+            }
+
         </style>
     </head>
 
     <body>
-        <div id="bookList">
+        <div id="bookList" class="whiteBack">
             <h1>My Book List</h1> 
         </div>
+        
+        <div id="biggerBox">
+            <div id="currentBook" class="whiteBack">
+                <h2>Current book:</h2>
 
-        <div id="ourForm">
-            <h2>Add a new book to your library:</h2>
+            </div>
+            <div id="ourForm" class="whiteBack">
+                <h2>Add a new book to your library:</h2>
 
                 <label for="title">Title:</label>
                 <input type="text" id="title" /><br>
@@ -49,7 +65,8 @@
                 <input type="text" id="readDate" /><br>
 
                 <button id="submit">submit</button> 
-
+            </div>
+        </div>
         <script src="bookList.js"></script>
     </body>
 </html>
